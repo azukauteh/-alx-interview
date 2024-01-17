@@ -17,7 +17,7 @@ Given a single character 'H' in a text file and the ability to perform Copy All 
 def minOperations(n)
 ```
 
-Returns:
+**Returns:**
 - An integer representing the minimum number of operations.
 - If it is impossible to achieve `n` 'H' characters, return 0.
 
@@ -54,4 +54,7 @@ print(minOperations(n))
 3. Run the test script:
 
    ```bash
-  ./0-main.py
+   ./ 0-main.py
+   ```
+
+```
