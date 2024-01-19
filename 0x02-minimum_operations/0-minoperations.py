@@ -3,23 +3,19 @@
 
 
 def minOperations(n):
-    if n <= 1:
-        return 0
-
-    """ Initialize array to store the minimum operations for each position"""
-    dp = [float('inf')] * (n + 1)
-
-    """ Base case: It takes 0 operations to have 1 'H' in the file """
-    dp[1] = 0
-
-    """ Iterate from 2 to n """
-    for i in range(2, n + 1):
-        """ Iterate from 1 to i - 1 to find a divisor"""
-        for j in range(1, i):
-            if i % j == 0:
-                """ If j is a divisor of i, update dp[i] with the minimum
-                    current value and dp[j] + (i/j)
-                    """
-                dp[i] = min(dp[i], dp[j] + (i // j))
-
-    return dp[n] if dp[n] != float('inf') else 0
+    """
+    Calculates the fewest number of operations
+    needed to result in exactly n H characters in the file.
+    Args:
+        n (int): length of letter `H` required in the file
+    Returns:
+        (int): number of minimum operations if possible otherwise 0
+    """
+    minimumOperations = 2
+    totalOperations = 0
+    while n > 1:
+        while n % minimumOperations == 0:
+            totalOperations += minimumOperations
+            n /= minimumOperations
+        minimumOperations += 1
+    return totalOperations
