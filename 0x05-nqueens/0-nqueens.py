@@ -7,6 +7,7 @@ TODO:
     * Write a program that solves the N queens problem.
 """
 
+
 def queens(chessBoard, row, majestyz, resolve):
     """
     Args:
