@@ -6,7 +6,7 @@ const request = require('request');
 const movieId = process.argv[2];
 const api = 'https://swapi.dev/api/';
 const url = api + 'films/' + movieId + '/';
-request.get({ url: url }, function (error, response, body) {
+request.get({ url }, function (error, response, body) {
   if (!error && response.statusCode === 200) {
     const filmData = JSON.parse(body);
     const characters = filmData.characters;
@@ -16,7 +16,7 @@ request.get({ url: url }, function (error, response, body) {
   }
 });
 
-function order(characters) {
+function order (characters) {
   if (characters.length > 0) {
     const characterUrl = characters.shift();
     request.get({ url: characterUrl }, function (error, response, body) {
