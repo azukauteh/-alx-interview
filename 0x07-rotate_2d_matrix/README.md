@@ -1,4 +1,4 @@
-# Rotate 2D Matrix
+# 0x07. Rotate 2D Matrix
 
 ## Description
 This is a simple Python script that rotates a given 2D matrix (list of lists) by 90 degrees clockwise. The rotation is performed in place, meaning the original matrix is modified rather than creating a new one.
