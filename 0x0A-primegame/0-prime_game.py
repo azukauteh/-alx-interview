@@ -5,25 +5,24 @@ Defines a Prime game
 
 
 def isWinner(x, nums):
+    """
+    Evaluates the winner of a prime session within x rounds of play
+    """
     if x < 1 or not nums:
         return None
-
-    max_n = max(nums)
-    primes = [True] * (max_n + 1)
-    primes[0] = primes[1] = False
-
-    """ Sieve of Eratosthenes to generate prime numbers"""
-    for i in range(2, int(max_n**0.5) + 1):
-        if primes[i]:
-            for j in range(i*i, max_n + 1, i):
-                primes[j] = False
-
-    marias_wins, bens_wins = 0, 0
-    for n in nums:
-        primes_count = sum(1 for i in range(2, n + 1) if primes[i])
-        bens_wins += primes_count % 2 == 0
-        marias_wins += primes_count % 2 == 1
-
-    if marias_wins == bens_wins:
+    mariasWins, bensWins = 0, 0
+    n = max(nums)
+    primes = [True for _ in range(1, n + 1, 1)]
+    primes[0] = False
+    for i, isPrime in enumerate(primes, 1):
+        if i == 1 or not isPrime:
+            continue
+        for y in range(i + i, n + 1, i):
+            primes[y - 1] = False
+    for _, n in zip(range(x), nums):
+        primesCount = len(list(filter(lambda x: x, primes[0: n])))
+        bensWins += primesCount % 2 == 0
+        mariasWins += primesCount % 2 == 1
+    if mariasWins == bensWins:
         return None
-    return 'Maria' if marias_wins > bens_wins else 'Ben'
+    return 'Maria' if mariasWins > bensWins else 'Ben'
